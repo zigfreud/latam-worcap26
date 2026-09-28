@@ -1,0 +1,38 @@
+experiment: E09_pressure
+data_dir: data/raw
+baseline_results: outputs/E00_climatology_30y_v1/results.json
+ridge_results: outputs/E01_ridge_local_v1/results.json
+window_years: 30
+inner_validation_years: 4
+training_points: 2500
+seed: 20260916
+iterations:
+- 100
+- 300
+clip_min: 0.0
+params:
+  objective: regression
+  learning_rate: 0.05
+  num_leaves: 31
+  max_depth: 8
+  min_data_in_leaf: 500
+  lambda_l2: 10.0
+  max_bin: 127
+  num_threads: 4
+  deterministic: true
+  force_col_wise: true
+  verbosity: -1
+folds:
+- train_end: 2016
+  validation_start: 2017
+  validation_end: 2018
+- train_end: 2018
+  validation_start: 2019
+  validation_end: 2020
+- train_end: 2020
+  validation_start: 2021
+  validation_end: 2022
+memory_months: 3
+protocol: docs/E09_PROTOCOLO.md
+control_results: outputs/E07_temporal_v1/memory3/results.json
+spatial_arm: pressure

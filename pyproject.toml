@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "worcap-precipitacao"
+version = "0.1.0"
+description = "Experimentos reproduzíveis de previsão mensal de precipitação — WorCAP 2026"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "numpy>=2,<3",
+  "pandas>=2.2,<3",
+  "xarray>=2025.1",
+  "netCDF4>=1.7,<2",
+  "h5netcdf>=1.4,<2",
+  "h5py>=3.12,<4",
+  "dask[array]>=2025.1",
+  "scipy>=1.15,<2",
+  "scikit-learn>=1.6,<2",
+  "lightgbm>=4.6,<5",
+  "matplotlib>=3.10,<4",
+  "seaborn>=0.13,<1",
+  "pyyaml>=6,<7",
+  "jupyterlab>=4.3,<5",
+  "ipykernel>=6.29,<8",
+  "kaggle>=1.7,<3",
+  "shapely>=2.1,<3",
+  "pyshp>=2.3,<3",
+  "pyproj>=3.7,<4",
+]
+
+[project.scripts]
+worcap = "worcap.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.11,<1"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/worcap"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
